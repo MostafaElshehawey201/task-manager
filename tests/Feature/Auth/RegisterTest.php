@@ -9,7 +9,7 @@ class RegisterTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testVlaidation(){
+    public function test_register_validation(){
         $data = [
             "name" => '' ,
             "email" => "not-an-email",
