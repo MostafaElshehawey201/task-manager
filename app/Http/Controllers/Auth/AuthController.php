@@ -15,8 +15,9 @@ use League\Config\Exception\ValidationException;
 class AuthController extends Controller
 {
     use ApiResponse;
-    public function __construct(protected RegisterServiceInterface $register_service_interface ,
-    protected LoginServiceInterface $login_service_interface
+    public function __construct(
+        protected RegisterServiceInterface $register_service_interface,
+        protected LoginServiceInterface $login_service_interface
     ) {}
     public function register(RegisterRequest $registerRequest)
     {
@@ -32,10 +33,17 @@ class AuthController extends Controller
         }
     }
 
-    public function login(LoginRequest $loginRequest){
-        $validation = $loginRequest->validated();
-        $LoginDTO = new LoginDTO($validation);
-        $this->login_service_interface->login($LoginDTO);
-
+    public function login(LoginRequest $loginRequest)
+    {
+        try {
+            $validation = $loginRequest->validated();
+            $LoginDTO = new LoginDTO($validation);
+            $token = $this->login_service_interface->login($LoginDTO);
+            return $this->success($token, 200);
+        } catch (ValidationException $e) {
+            return $this->error($e->getMessages(), 404);
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage(), 500);
+        }
     }
 }
