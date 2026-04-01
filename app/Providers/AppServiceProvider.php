@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Interfaces\Auth\LoginServiceInterface;
 use App\Interfaces\Auth\RegisterRepositoryInterface;
 use App\Interfaces\Auth\RegisterServiceInterface;
 use App\Repositories\Auth\ProcessRepository;
@@ -22,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             RegisterRepositoryInterface::class,
             ProcessRepository::class,
+        );
+        $this->app->bind(
+            LoginServiceInterface::class,
+            ProcessService::class,
         );
     }
 

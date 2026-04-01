@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Override;
 
-class RegisterRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,31 +26,20 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string|min:3|max:255",
-            "email" => "required|email|unique:users,email",
-            "phone" => "required|digits_between:10,14|unique:users,phone",
-            "password" => "required|string|min:6|max:32|confirmed",
+            "login" => "required|string",
+            "password" => "required|string|min:6|max:32"
         ];
     }
 
     public function messages()
     {
         return [
-            "name.required" => __('validation.name.required'),
-            "name.string" => __('validation.name.string'),
-            "name.min" => __('validation.name.min'),
-            "name.max" => __('validation.name.max'),
-            "email.required" => __('validation.email.required'),
-            "email.email" => __("validation.email.email"),
-            "email.unique" => __('validation.email.unique'),
-            "phone.required" => __('validation.phone.required'),
-            "phone.digits_between" => __('validation.phone.digits_between'),
-            "phone.unique" => __('validation.phone.unique'),
+            "login.required" => __('validation.login.required'),
+            "login.string" => __('validation.login.string'),
             "password.required" => __('validation.password.required'),
             "password.string" => __('validation.password.string'),
             "password.min" => __('validation.password.min'),
             "password.max" => __('validation.password.max'),
-            "password.confirmed" => __('validation.password.confirmed'),
         ];
     }
 
@@ -65,7 +54,7 @@ class RegisterRequest extends FormRequest
             response()->json([
                 "success" => false,
                 "data" => null,
-                "errors" => $errors
+                "errors" => $errors,
             ], 422)
         );
     }

@@ -14,7 +14,12 @@ return [
     'phone.digits_between' => 'Phone number must be between 10 and 14 digits',
     'phone.unique' => 'This phone number is already taken',
 
-    'password.required' => 'Password is required',
-    'password.string' => 'Password must be a string',
+    'password.required' => 'The password field is required.',
+    'password.string' => 'The password must be a string.',
+    'password.min' => 'The password must be at least 6 characters.',
+    'password.max' => 'The password must not be greater than 32 characters.',
     'password.confirmed' => 'Password confirmation does not match',
+
+    'login.required' => 'Data enter is required to login',
+    'login.string' => 'data is email or phone number',
 ];

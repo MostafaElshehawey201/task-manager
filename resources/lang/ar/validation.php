@@ -14,7 +14,12 @@ return [
     'phone.digits_between' => 'رقم الهاتف يجب أن يكون بين 10 و 14 رقم',
     'phone.unique' => 'رقم الهاتف مستخدم بالفعل',
 
-    'password.required' => 'كلمة المرور مطلوبة',
-    'password.string' => 'كلمة المرور يجب أن تكون نص',
+    'password.required_ar' => 'حقل كلمة المرور مطلوب.',
+    'password.string_ar' => 'يجب أن تكون كلمة المرور نصًا.',
+    'password.min_ar' => 'يجب ألا تقل كلمة المرور عن 6 أحرف.',
+    'password.max_ar' => 'يجب ألا تزيد كلمة المرور عن 32 حرفًا.',
     'password.confirmed' => 'تأكيد كلمة المرور غير متطابق',
+
+    'login.required' => 'بيانات الادخال مطلوبة',
+    'login.string' => 'بيانات الادخال ايميل او رقم هاتف فقط'
 ];
