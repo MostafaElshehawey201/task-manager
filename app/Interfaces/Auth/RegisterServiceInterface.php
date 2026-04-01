@@ -2,7 +2,7 @@
 
 namespace App\Interfaces\Auth;
 
-interface RegisterInterface
+interface RegisterServiceInterface
 {
     public function register($RegisterDTO);
 }

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use App\Interfaces\Auth\RegisterInterface;
+use App\Interfaces\Auth\RegisterRepositoryInterface;
+use App\Interfaces\Auth\RegisterServiceInterface;
+use App\Repositories\Auth\ProcessRepository;
 use App\Services\Auth\ProcessService;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,8 +16,12 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(
-            RegisterInterface::class,
+            RegisterServiceInterface::class,
             ProcessService::class,
+        );
+        $this->app->bind(
+            RegisterRepositoryInterface::class,
+            ProcessRepository::class,
         );
     }
 

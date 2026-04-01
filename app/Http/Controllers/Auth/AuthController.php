@@ -5,17 +5,25 @@ namespace App\Http\Controllers\Auth;
 use App\DTO\Auth\RegisterDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Interfaces\Auth\RegisterInterface;
+use App\Interfaces\Auth\RegisterServiceInterface;
+use App\Trait\Auth\ApiResponse;
+use League\Config\Exception\ValidationException;
 
 class AuthController extends Controller
 {
-    public function __construct(protected RegisterInterface $register_interface)
+    use ApiResponse;
+    public function __construct(protected RegisterServiceInterface $register_service_interface) {}
+    public function register(RegisterRequest $registerRequest)
     {
-
-    }
-    public function register(RegisterRequest $registerRequest){
-        $validation = $registerRequest->validated();
-        $RegisterDTO = new RegisterDTO($validation);
-        $this->register_interface->register($RegisterDTO);
+        try {
+            $validation = $registerRequest->validated();
+            $RegisterDTO = new RegisterDTO($validation);
+            $user = $this->register_service_interface->register($RegisterDTO);
+            return $this->success($user, 201);
+        } catch (ValidationException $e) {
+            return $this->error($e->getMessages(), 422);
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage(), 500);
+        }
     }
 }
