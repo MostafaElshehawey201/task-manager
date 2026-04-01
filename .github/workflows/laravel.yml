@@ -3,10 +3,10 @@ name: Laravel CI
 on:
   push:
     branches:
-      - general
+      - main
   pull_request:
     branches:
-      - general
+      - main
 
 jobs:
   laravel-test:
