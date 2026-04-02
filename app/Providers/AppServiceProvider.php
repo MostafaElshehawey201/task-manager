@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Interfaces\Auth\LoginServiceInterface;
 use App\Interfaces\Auth\RegisterRepositoryInterface;
 use App\Interfaces\Auth\RegisterServiceInterface;
+use App\Interfaces\Auth\RequestOtpServiceInterface;
 use App\Interfaces\Auth\Strategies\ManagerLoginStrategyInterface;
 use App\Interfaces\Auth\Strategies\Process\ProcessStrategiesInterface;
 use App\Repositories\Auth\ProcessRepository;
@@ -44,6 +45,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             ProcessStrategiesInterface::class,
             EmailStrategy::class,
+        );
+        $this->app->bind(
+            RequestOtpServiceInterface::class,
+            ProcessService::class,
         );
     }
 

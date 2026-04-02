@@ -5,9 +5,10 @@ namespace App\Services\Auth;
 use App\Interfaces\Auth\LoginServiceInterface;
 use App\Interfaces\Auth\RegisterRepositoryInterface;
 use App\Interfaces\Auth\RegisterServiceInterface;
+use App\Interfaces\Auth\RequestOtpServiceInterface;
 use App\Interfaces\Auth\Strategies\ManagerLoginStrategyInterface;
 
-class ProcessService implements RegisterServiceInterface , LoginServiceInterface
+class ProcessService implements RegisterServiceInterface , LoginServiceInterface , RequestOtpServiceInterface
 {
     /**
      * Create a new class instance.
@@ -24,5 +25,9 @@ class ProcessService implements RegisterServiceInterface , LoginServiceInterface
 
     public function login($LoginDTO){
         return $this->manager_login_strategy_interface->ManagerLoginStrategy($LoginDTO);
+    }
+
+    public function RequestOtp($requestOtpDTO){
+        
     }
 }
