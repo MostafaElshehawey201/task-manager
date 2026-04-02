@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\DTO\Auth\LoginDTO;
 use App\DTO\Auth\RegisterDTO;
+use App\DTO\Auth\RequestOtpDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
@@ -50,9 +51,15 @@ class AuthController extends Controller
         }
     }
 
-    public function RequestOtp(RequestOtpRequest $RequestOtpRequest){
-        $validation = $RequestOtpRequest->validated();
-        $requestOtpDTO = new RequestOtpRequest($validation);
-        $this->request_otp_service_interface->RequestOtp($requestOtpDTO);
+    public function RequestOtp(RequestOtpRequest $RequestOtpRequest)
+    {
+        try {
+            $validation = $RequestOtpRequest->validated();
+            $requestOtpDTO = new RequestOtpDTO($validation);
+            $otp = $this->request_otp_service_interface->RequestOtp($requestOtpDTO);
+            return $this->success($otp, 200);
+        } catch (\Exception $e) {
+            return $this->error($e->getMessage(), 500);
+        }
     }
 }

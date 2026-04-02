@@ -2,7 +2,7 @@
 
 namespace App\DTO\Auth;
 
-class OtpDTO{
+class RequestOtpDTO{
     public $login;
 
     public function __construct($validation)

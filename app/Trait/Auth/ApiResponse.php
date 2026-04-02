@@ -16,7 +16,7 @@ trait ApiResponse
     public function error($data, $code)
     {
         return response()->json([
-            "success" => true,
+            "success" => false,
             "data" => null,
             "errors" => $data,
         ], $code);

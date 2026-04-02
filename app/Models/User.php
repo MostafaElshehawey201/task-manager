@@ -35,6 +35,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function otps(){
+        return $this->hasMany(Otp::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
